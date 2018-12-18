@@ -1,0 +1,64 @@
+/*
+__________________________________
+
+CSS for Book Titles scaerch Module
+__________________________________
+*/
+.container {
+  margin-top: 50px;
+}
+/*CSS for Header*/
+.heading{
+  text-align: center;
+}
+/*CSS for Search Panel and Display Text*/
+.submit_btn{
+  margin-left:20px;
+  display: inline-block;
+  vertical-align: middle
+}
+.input_txt{
+  display: inline-block;
+  vertical-align: middle
+}
+.errorInfo{
+  color:rgba(242, 48, 48, 0.838);
+  margin-top:10px;
+}
+.resultsInfo{
+  margin-top:15px;
+}
+/*CSS for List view elements*/
+.list-group-item{
+  color: rgba(59, 59, 244, 0.858);
+  user-select: none;
+  cursor: pointer;
+}
+.list-group-item:hover{
+ text-decoration: underline;
+  
+}
+.modal_list div{
+  background:#999;
+  margin-bottom: 10px;
+  border-radius:5px;
+  color:#fff;
+  padding:15px;
+
+}
+/*CSS for Pagemantion elements*/
+.pageInfoHolder{
+  display: grid;
+}
+.left-half{
+  grid-column: 1;
+}
+.left-half p{
+margin-top:5px;
+}
+.right-half
+{
+  text-align: right;
+  grid-column: 2;
+}
+

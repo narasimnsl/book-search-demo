@@ -1,0 +1,51 @@
+<h1 class="heading">Search for a Book Title</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Main Search Element -->
+      <input class="input_txt" type="text" #findName (input)="onTitleEntry($event)" (keyup.enter)="onSearchTitle(findName.value)">
+      <button [disabled]="submit_disabled" class="btn btn-primary submit_btn" (click)="onSearchTitle(findName.value)">Search Titles</button>
+      <hr>
+      <!-- Displays Loading Error Info while loading json -->
+      <p class="errorInfo" *ngIf="display_error">Something went wrong in getting Data</p>
+      <!-- Displays the Information of the number of Pages -->
+      <div class="pageInfoHolder"  *ngIf="display_result">
+          <div class="left-half">
+              <p class="resultsInfo">Results Found: {{numberOfTitles}}</p>
+          </div>
+          <div class="right-half">
+              <pagination-controls class="pagesInfo" (pageChange)="onPageChange($event)">
+                  <span *ngFor="let i of total_pgs | paginate: { itemsPerPage: 100, currentPage: pageNo }"></span>	
+                </pagination-controls>
+          </div>
+          
+          <hr>
+      </div>
+      <!-- Spinner while Loading datat -->
+      <ngx-spinner
+        bdColor = "rgba(255, 255, 255, 0.2)"
+        size = "medium"
+        color = "#0c0c0c"
+        type = "ball-clip-rotate"
+        ></ngx-spinner>
+     
+      <!-- Populates the list of Searcg Results -->
+      <ul class="list-group" *ngFor="let list of titles">
+        <li class="list-group-item" (click)="onModalViewClick(list)" >{{ list.title }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Modal to display the Individual Informatiion of the Book. -->
+<ngx-smart-modal #myModal identifier="myModal">
+  <div class="modal_list" *ngIf="myModal.hasData()">
+    <br/><br/>
+      <div><strong>Title</strong><br>{{ myModal.getData().title}}</div> 
+      <div><strong>Author</strong><br>{{ myModal.getData().author_name}}</div>
+      <div><strong>Language</strong><br>{{ myModal.getData().language}}</div>
+      <div><strong>Subject</strong><br>{{ myModal.getData().subject}}</div>
+      <div><strong>Publisher</strong><br>{{ myModal.getData().publisher}}</div>
+      <div><strong>Publish Date</strong><br>{{ myModal.getData().publish_date}}</div>
+      <div><strong>Publish Place</strong><br>{{ myModal.getData().publish_place}}</div>
+  </div>
+</ngx-smart-modal>
